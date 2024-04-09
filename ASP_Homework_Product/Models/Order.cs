@@ -17,7 +17,7 @@ namespace Advertisement.Models
 
         [Required]
         [Phone]
-        [StringLength(11, MinimumLength = 11)]
+        [StringLength(11, MinimumLength = 11)] 
         public string PhoneNumber { get; set; }
 
         [Required]
