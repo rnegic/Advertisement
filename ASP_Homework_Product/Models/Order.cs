@@ -5,6 +5,11 @@ namespace Advertisement.Models
 {
     public class Order
     {
+        public Order () 
+        {
+            OrderDate= DateTime.Now;
+            Status = "новый";
+        }
         public int Id { get; set; }
 
         [Required]

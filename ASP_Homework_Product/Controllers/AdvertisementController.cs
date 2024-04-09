@@ -8,6 +8,7 @@ namespace ASP_Homework_Product.Controllers
     {
         private readonly Repository _repository = new Repository();
 
+        //сама идея DI
         public AdvertisementController(IRepository repository)
         {
             _repository = (Repository)repository;
@@ -17,12 +18,15 @@ namespace ASP_Homework_Product.Controllers
             return View(_repository.GetAllOrders());
         }
 
+        //создаем новый экземпляр order,передаем туда же
         public IActionResult Create()
         {
+            ViewBag.isEdit = false;
             return View("Order", new Order());
         }
         public IActionResult Edit(int id)
         {
+            ViewBag.isEdit = true;
             var order = _repository.GetOrderById(id);
             if (order == null)
             {
@@ -31,6 +35,7 @@ namespace ASP_Homework_Product.Controllers
             return View("Order", order);
         }
 
+        //обрабатываем запросы отправляемые во view
         [HttpPost]
         public IActionResult Order(Order order)
         {
@@ -44,9 +49,10 @@ namespace ASP_Homework_Product.Controllers
             {
                 _repository.UpdateOrder(order);
             }
-            return RedirectToAction(nameof(Index));
-        }
+			return RedirectToAction("Index", "Advertisement");
+		}
 
+        //для отобр. формы заказа
         public IActionResult Order(int? id)
         {
             var order = id == null ? new Order() : _repository.GetOrderById(id.Value);

@@ -7,9 +7,12 @@ namespace Advertisement.Models
     {
         private readonly List<Order> _orders = new List<Order>();
 
-        public IEnumerable<Order> GetAllOrders() => _orders;
+		public IEnumerable<Order> GetAllOrders()
+		{
+			return _orders;
+		}
 
-        public Order GetOrderById(int id) => _orders.FirstOrDefault(o => o.Id == id);
+		public Order GetOrderById(int id) => _orders.FirstOrDefault(o => o.Id == id);
 
         public void AddOrder(Order order)
         {
@@ -19,7 +22,9 @@ namespace Advertisement.Models
 
         public void UpdateOrder(Order order)
         {
+            //возвращаем индекс первого элемента который o.Id == order.Id
             var index = _orders.FindIndex(o => o.Id == order.Id);
+
             if (index != -1)
             {
                 _orders[index] = order;

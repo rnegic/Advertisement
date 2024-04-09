@@ -48,7 +48,7 @@ namespace ASP_Homework_Product
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Advertisement}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "advertisement",
                     pattern: "{controller=Advertisement}/{action=Index}/{id?}");
